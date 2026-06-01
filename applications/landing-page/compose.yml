@@ -1,0 +1,14 @@
+services:
+  landingpage:
+    container_name: landingpage
+    image: nginx:1.29.0-alpine
+    restart: always
+    ports:
+      - 8180:80
+    networks:
+      - applications-network
+
+networks:
+  applications-network:
+    name: applications-network
+    external: true
