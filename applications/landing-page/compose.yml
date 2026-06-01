@@ -3,6 +3,16 @@ services:
     container_name: landingpage
     image: nginx:1.29.0-alpine
     restart: always
+    logging:
+      driver: "loki"
+      options:
+        loki-external-labels: "env=pic"
+        loki-url: "http://localhost:3100/loki/api/v1/push"
+        loki-retries: "2"
+        loki-max-backoff: "800s"
+        loki-timeout: "1s"
+        keep-file: "true"
+        mode: "non-blocking"
     ports:
       - 8180:80
     networks:
