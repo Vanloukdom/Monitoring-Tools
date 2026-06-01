@@ -1,0 +1,16 @@
+services:
+  ams-loki:
+    container_name: ams-loki
+    image: grafana/loki:12.0.0
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./ams-loki-data:/var/lib/loki
+    networks:
+      - applications-network
+
+networks:
+  applications-network:
+    name: applications-network
+    external: true
